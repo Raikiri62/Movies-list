@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="app.js" defer type="module"></script>
+    <link rel="icon" href="/images/popcorn.png" type="image/icon type">
+</head>
+<body>
+    <div id="backdrop"></div>
+    <div class="modal warning" id="warningModal">
+        <p style="margin: 30px;">
+            <h2>Are you sure you want to delete the selected movies?</h2>
+        </p>
+        <img src="/images/movie-theater.png" alt="warning" style="width: 30%; height: auto;">
+        <br>
+        <div class="decision">
+            <img src="/images/no.png" alt="no" style="width: 80px; height: auto;" id="noBtn">
+            <img src="/images/yes.png" alt="yes" style="width: 80px; height: auto;" id="yesBtn">
+        </div>
+    </div>
+    <div class="counter" id="counter"><p>0</p></div>
+    <div class="header-line">
+        <img src="/images/popcorn.png">
+        <div class="logo" style="vertical-align:baseline;">
+            <a href="/">Movies List</a>
+        </div>
+        <div class="logo" style="font-size: 1em; font-weight:normal; ">
+            A Vanilla Javascript & Node-JS Project
+        </div>
+        <ul class="navigation">
+            <!-- <li><a href="#">Sample List View</a></li>
+            <li><a href="#">Sample Gallary View</a></li> -->
+            <li id="create-public-list-li"><a style="font-weight: bolder; cursor: pointer;">Create public (on-server) list</a></li>
+            <!-- <li><a href="listCreation.html" style="font-weight: bolder;">Create public (on-server) list</a></li> -->
+            <li><a href="/publicLists">Public Lists</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+        <div style="color:rgb(89, 111, 134);"><a href="http://roy-dev.com" style="text-decoration: none;">Created By Roy Yitzchak</a></div>
+    </div>
+    <div class="main-body">        
+        <div class="options-menu">
+            <span class="logo" style="font-size: 1.2em;">🎥 <span style="text-decoration: underline">Options:</span></span>
+            <button class="btn btn-option hide" id="deleteAll">🎬 Delete all</button>
+            <button class="btn btn-option hide" id="saveBtn">🎬 save list locally</button>
+            <button class="btn btn-option hide" id="shuffle">🎬 shuffle order</button>
+            <!-- <button class="btn btn-option">🎬 import</button>
+            <button class="btn btn-option hide">🎬 export</button> -->
+        </div>
+        <div class="movie-list">
+            <div class="publish-list card">
+                <h5 style="font-size: 1.5rem; font-weight: 500; line-height: 1.2;">Publish this list on server:</h5>
+                <form id="publish-form-server" name="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="listname" placeholder="List name">
+                        </div>
+                        <button id="publish" type="submit" class="btn btn-dark">Publish to server</button>
+                    </div>
+                </form>
+                <hr>
+            </div>
+            <div class="add-movie card">
+                <h5 style="font-size: 1.5rem; font-weight: 500; line-height: 1.2;">Add Movie</h5>
+                <form id="movie-form" name="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="title" placeholder="Movie Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" min="1" max="5" name="stars" value="5">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="info" rows="2" cols="30" class="form-control" placeholder="Movie Information"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="url" placeholder="Image URL">
+                        </div>
+                        <button id="submit" type="submit" class="btn btn-dark">Add Movie</button>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div class="card">
+                <h5 style="font-size: 1.5rem; font-weight: 500; line-height: 1.2;">Or search one:</h5>
+                <p>
+                    <form id="movie-form-api" name="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="title" placeholder="Movie Name">
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-dark">Search</button>
+                        </div>
+                    </form>
+                </p>
+            </div>
+            <hr>
+            <div class="result card">
+                searching...
+            </div>
+            <hr>
+            <div class="status card">
+            </div>
+            <hr>
+            <div class="flex-container-movies">
+
+            </div>
+    
+        </div>
+    </div>
+</body>
+</html>
